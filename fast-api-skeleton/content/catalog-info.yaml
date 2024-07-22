@@ -5,7 +5,25 @@ metadata:
   annotations:
     "backstage.io/project": ${{ values.project_id | dump }}
     "backstage.io/cloud-run": ${{ values.app_name | dump }}
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: service
   owner: user:guest
   lifecycle: experimental
+  providesApis:
+    - ${{ values.app_name }}
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: ${{ values.app_name }}
+  description: The App APIs Specification. ${{ values.description }}
+  tags:
+    - fastapi
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: user:guest
+  definition:
+    $text: ./fastapi.yaml
