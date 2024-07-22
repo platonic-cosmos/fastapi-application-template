@@ -8,6 +8,10 @@ This boilerplate is used to provision a new Python FastAPI service running in Go
 * Code to integrate with Google Cloud Spanner
 * OpenAPI / Swagger documentation
 * Application documentation
-* Unit Testing
+* Dependencies installation
 * Docker file
 * GitHub Actions CI pipeline
+
+## Features under Development
+* Unit testing
+* Monitoring / Observability integration
