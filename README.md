@@ -16,4 +16,4 @@ This boilerplate is used to provision a new Python FastAPI service running in Go
 ## Features under Development
 * Unit testing
 * Monitoring / Observability instrumentation
-* Security guardrails
+* Security guardrails / policies
