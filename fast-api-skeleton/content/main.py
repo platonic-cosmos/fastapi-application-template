@@ -6,7 +6,7 @@ import json
 
 app = FastAPI()
 instance_id="appdb"
-database_id="${{ values.spanner_db_name }}"
+database_id="${{ values.spanner_db_name | dump }}"
 
 @app.get("/hc/")
 def healthcheck():
