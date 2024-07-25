@@ -23,16 +23,18 @@ jobs:
 
       - name: Set up Python
         uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
       - name: Unit Tests
-        Run: |
+        run: |
           pip install -r fast-api-skeleton/content/requirements.txt
           pip install pytest
           pytest
 
       - name: Git Leaks
-        Run: echo "Run GitLeaks for detecting and preventing hardcoded secrets like passwords, api keys, and tokens in git repos"
+        run: echo "Run GitLeaks for detecting and preventing hardcoded secrets like passwords, api keys, and tokens in git repos"
 
       - name: Sonar Scan
-        Run: echo "Run SonarQube scan"
+        run: echo "Run SonarQube scan"
 
