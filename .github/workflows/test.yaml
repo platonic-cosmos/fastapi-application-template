@@ -1,0 +1,38 @@
+name: Build python app
+
+on:
+  push:
+    branches: main
+
+jobs:
+  build-fastapi-app:
+    name: Build FastAPI App
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+      actions: read
+      checks: write
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+
+      - name: Unit Tests
+        Run: |
+          pip install -r fast-api-skeleton/content/requirements.txt
+          pip install pytest
+          pytest
+
+      - name: Git Leaks
+        Run: echo "Run GitLeaks for detecting and preventing hardcoded secrets like passwords, api keys, and tokens in git repos"
+
+      - name: Sonar Scan
+        Run: echo "Run SonarQube scan"
+
