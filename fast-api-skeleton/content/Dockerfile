@@ -19,7 +19,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Expose the port on which the FastAPI app will run
-ENV PORT=8000
+ENV PORT=8080
 EXPOSE $PORT
 
 # Set the command to run the uvicorn server at 8000 port.
