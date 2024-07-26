@@ -32,6 +32,8 @@ jobs:
 
       - name: Install dependencies
         run: |
+          pwd
+          ls -l
           pip install -r fast-api-skeleton/content/requirements.txt
           pip install pytest
 
