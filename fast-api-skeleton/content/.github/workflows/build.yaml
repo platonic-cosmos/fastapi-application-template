@@ -34,7 +34,7 @@ jobs:
         run: |
           pwd
           ls -l
-          pip install -r fast-api-skeleton/content/requirements.txt
+          pip install -r requirements.txt
           pip install pytest
 
       - name: Unit Tests
