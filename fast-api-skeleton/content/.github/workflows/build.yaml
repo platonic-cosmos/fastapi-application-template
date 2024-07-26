@@ -53,7 +53,7 @@ jobs:
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
 
       - name: Sonar Scan
-        Run: echo "Run SonarQube scan"
+        run: echo "Run SonarQube scan"
 
       - name: configure gcp credentials
         uses: google-github-actions/auth@v1
