@@ -32,7 +32,7 @@ jobs:
           pip install pytest
           pytest
 
-      - name: Git Leaks
+      - name: Git Leaks - Scanning for passwords, tokens, etc.
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
