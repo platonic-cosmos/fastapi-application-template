@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r fast-api-skeleton/content/requirements.txt
-          pip install pytest
+          pip install pytest pytest-md pytest-emoji
 
       - name: Unit Tests
         uses: pavelzw/pytest-action@v2
