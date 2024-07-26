@@ -12,4 +12,4 @@ def test_read_main():
 def test_hc_main():
     response = client.get("/hc")
     assert response.status_code == 200
-    assert response.json() == {"message": "Health - OK"}
+    assert response.json() == {"Health - OK"}
