@@ -36,10 +36,10 @@ jobs:
         continue-on-error: true
         with:
           verbose: true
-          #emoji: true
+          emoji: false
           job-summary: true
           custom-arguments: '-q'
-          #click-to-expand: true
+          click-to-expand: false
           report-title: 'Unit Tests Report'
 
       - name: Git Leaks - Scanning for passwords, tokens, etc.
