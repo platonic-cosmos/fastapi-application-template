@@ -33,7 +33,9 @@ jobs:
           pytest
 
       - name: Git Leaks
-        run: echo "Run GitLeaks for detecting and preventing hardcoded secrets like passwords, api keys, and tokens in git repos"
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Sonar Scan
         run: echo "Run SonarQube scan"
