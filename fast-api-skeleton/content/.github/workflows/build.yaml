@@ -37,6 +37,12 @@ jobs:
           pip install -r requirements.txt
           pip install pytest pytest-md pytest-emoji
 
+      - name: configure gcp credentials
+        uses: google-github-actions/auth@v1
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+
       - name: Unit Tests
         uses: pavelzw/pytest-action@v2
         continue-on-error: true
@@ -56,12 +62,6 @@ jobs:
 
       - name: Sonar Scan
         run: echo "Run SonarQube scan"
-
-      - name: configure gcp credentials
-        uses: google-github-actions/auth@v1
-        with:
-          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
 
       - name: auth docker
         run: gcloud --quiet auth configure-docker us-east4-docker.pkg.dev

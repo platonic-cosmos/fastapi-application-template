@@ -15,7 +15,7 @@ client.setup_logging()
 @app.get("/hc/")
 def healthcheck():
     logging.info("Called /hc endpoint.")
-    return 'Health - OK'
+    return {"message": "Health - Ok"}
 
 @app.get("/tasks/")
 def get_db_data():
@@ -38,14 +38,17 @@ async def root():
 @app.get("/logwarning")
 def log_warning():
     logging.warning("Test log warning message.")
+    return {"message": "Test log warning message."}
 
 @app.get("/logerror")
 def log_error():
     logging.error("Test log error message.")
+    return {"message": "Test log error message."}
 
 @app.get("/logdebug")
 def log_debug():
     logging.debug("Test log debug message.")
+    return {"message": "Test log debug message."}
 
 if __name__ == "__main__":
     config = uvicorn.Config("main:app", port=8080, log_level="info")

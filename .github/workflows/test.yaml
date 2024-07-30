@@ -30,6 +30,12 @@ jobs:
         run: |
           pip install -r fast-api-skeleton/content/requirements.txt
           pip install pytest pytest-md pytest-emoji
+      
+      - name: configure gcp credentials
+        uses: google-github-actions/auth@v1
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
 
       - name: Unit Tests
         uses: pavelzw/pytest-action@v2
