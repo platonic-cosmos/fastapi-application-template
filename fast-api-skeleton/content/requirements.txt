@@ -2,4 +2,4 @@ fastapi
 uvicorn[standard]
 google-cloud-spanner
 httpx
-google-cloud
+google-cloud-logging
