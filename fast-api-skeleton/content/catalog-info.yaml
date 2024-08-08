@@ -7,10 +7,19 @@ metadata:
     "backstage.io/cloud-run": ${{ values.app_name | dump }}
     backstage.io/techdocs-ref: dir:.
     github.com/project-slug: monkmantra/app-${{ values.app_name }}
+  links:
+    - url: "https://${{ values.app_name }}-nraemwfzfa-uk.a.run.app"
+      title: Application URL
+      icon: extension
+    - url: "https://console.cloud.google.com/run/detail/us-east4/${{ values.app_name }}/logs?project=${{ values.project_id }}"
+      title: Logs
+      icon: dashboard
 spec:
   type: service
   owner: user:de-ims
   lifecycle: experimental
+  dependsOn:
+    - component:default/infra-${{ values.app_name }}
   providesApis:
     - ${{ values.app_name }}
 
