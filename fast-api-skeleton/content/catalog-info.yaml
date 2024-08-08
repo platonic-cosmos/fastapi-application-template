@@ -6,7 +6,7 @@ metadata:
     "backstage.io/project": ${{ values.project_id | dump }}
     "backstage.io/cloud-run": ${{ values.app_name | dump }}
     backstage.io/techdocs-ref: dir:.
-    github.com/project-slug: monkmantra/app-${{ values.app_name }}
+    github.com/project-slug: monkmantra/${{ values.app_name }}-app
   links:
     - url: "https://${{ values.app_name }}-nraemwfzfa-uk.a.run.app"
       title: Application URL
@@ -18,8 +18,6 @@ spec:
   type: service
   owner: user:de-ims
   lifecycle: experimental
-  dependsOn:
-    - component:default/infra-${{ values.app_name }}
   providesApis:
     - ${{ values.app_name }}
 
