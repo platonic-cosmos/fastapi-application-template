@@ -7,7 +7,7 @@ on:
 env:
   APP_NAME: ${{ values.app_name }}
   GCP_PROJECT_ID: ${{ values.project_id }}
-  REPO_NAME: terraform-${{ values.app_name }}
+  REPO_NAME: ${{ values.app_name }}-iac
 
 {% raw %}
 jobs:

@@ -1,11 +1,19 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: app-${{ values.app_name }}
+  name: ${{ values.app_name }}-app
   annotations:
     "backstage.io/project": ${{ values.project_id | dump }}
     "backstage.io/cloud-run": ${{ values.app_name | dump }}
     backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: monkmantra/${{ values.app_name }}-app
+  links:
+    - url: "https://${{ values.app_name }}-nraemwfzfa-uk.a.run.app"
+      title: Application URL
+      icon: extension
+    - url: "https://console.cloud.google.com/run/detail/us-east4/${{ values.app_name }}/logs?project=${{ values.project_id }}"
+      title: Logs
+      icon: dashboard
 spec:
   type: service
   owner: user:de-ims
