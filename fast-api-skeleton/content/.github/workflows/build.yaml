@@ -45,7 +45,6 @@ jobs:
 
       - name: Unit Tests
         uses: pavelzw/pytest-action@v2
-        continue-on-error: true
         with:
           verbose: true
           emoji: false
