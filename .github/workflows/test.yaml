@@ -37,7 +37,11 @@ jobs:
           workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
 
-      - name: Unit Tests
+      - name: Run Unit Tests
+        run: |
+          pytest . --coverage-xml=test-coverage.xml
+
+      - name: Unit Tests Summary
         uses: pavelzw/pytest-action@v2
         continue-on-error: true
         with:
@@ -63,3 +67,4 @@ jobs:
           projectBaseDir: fast-api-skeleton/content
           args: >
             -Dsonar.projectKey=fastapi-application-template
+            -Dsonar.python.coverage.reportPaths=test-coverage.xml

@@ -69,7 +69,6 @@ jobs:
           projectBaseDir: .
           args: >
             -Dsonar.projectKey=${{ values.app_name }}
-            -Dsonar.sources=.
             -Dsonar.python.coverage.reportPaths=test-coverage.xml
 
       - name: auth docker
