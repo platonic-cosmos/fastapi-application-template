@@ -65,6 +65,10 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+        with:
+          projectBaseDir: .
+          args: >
+            -Dsonar.projectKey=${{ values.app_name }}
 
       - name: auth docker
         run: gcloud --quiet auth configure-docker us-east4-docker.pkg.dev
