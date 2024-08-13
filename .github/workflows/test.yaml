@@ -39,7 +39,7 @@ jobs:
 
       - name: Run Unit Tests
         run: |
-          pytest . --cov-report xml:test-coverage.xml --cov=fastapi-application-template
+          pytest . --cov-report xml:test-coverage.xml --cov=fastapi-application-template --cov-report term
 
       - name: Unit Tests Summary
         uses: pavelzw/pytest-action@v2
