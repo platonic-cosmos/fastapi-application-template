@@ -59,11 +59,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
 
-      - name: Git Leaks - Scanning for passwords, tokens, etc.
-        uses: gitleaks/gitleaks-action@v2
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@v2.3.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
 
       - name: auth docker
         run: gcloud --quiet auth configure-docker us-east4-docker.pkg.dev
