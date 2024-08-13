@@ -37,10 +37,6 @@ jobs:
           workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
 
-      - name: Run Unit Tests
-        run: |
-          pytest . --cov-report xml:test-coverage.xml --cov=fastapi-application-template --cov-report term
-
       - name: Unit Tests Summary
         uses: pavelzw/pytest-action@v2
         continue-on-error: true
@@ -51,6 +47,10 @@ jobs:
           custom-arguments: '-q'
           click-to-expand: false
           report-title: 'Unit Tests Report'
+
+      - name: Unit Tests Coverage
+        run: |
+          pytest /tests --cov-report xml:test-coverage.xml --cov=app --junitxml=test-results/test-results.xml
 
       - name: Git Leaks - Scanning for passwords, tokens, etc.
         uses: gitleaks/gitleaks-action@v2
