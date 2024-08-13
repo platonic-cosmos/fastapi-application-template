@@ -63,4 +63,3 @@ jobs:
           projectBaseDir: fast-api-skeleton/content
           args: >
             -Dsonar.projectKey=fastapi-application-template
-
