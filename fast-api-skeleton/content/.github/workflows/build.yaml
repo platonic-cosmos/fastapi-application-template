@@ -35,7 +35,7 @@ jobs:
           pwd
           ls -l
           pip install -r requirements.txt
-          pip install pytest pytest-md pytest-emoji
+          pip install pytest pytest-md pytest-emoji pytest-cov
 
       - name: configure gcp credentials
         uses: google-github-actions/auth@v1
@@ -52,6 +52,22 @@ jobs:
           custom-arguments: '-q'
           click-to-expand: false
           report-title: 'Unit Tests Report'
+      
+      - name: Unit Tests Coverage
+        run: |
+          pytest . --cov-report xml:test-coverage.xml --cov=. --junitxml=test-results/test-results.xml
+      
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-tests-coverage-report
+          path: test-coverage.xml
+
+      - name: Archive unit tests results
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-tests-results
+          path: test-results.xml
 
       - name: Git Leaks - Scanning for passwords, tokens, etc.
         uses: gitleaks/gitleaks-action@v2
@@ -68,7 +84,7 @@ jobs:
         with:
           projectBaseDir: .
           args: >
-            -Dsonar.projectKey=${{ values.app_name }}
+            -Dsonar.projectKey=${{ env.APP_NAME }}
             -Dsonar.python.coverage.reportPaths=test-coverage.xml
 
       - name: auth docker
