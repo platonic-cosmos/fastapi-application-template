@@ -50,7 +50,7 @@ jobs:
 
       - name: Unit Tests Coverage
         run: |
-          pytest /tests --cov-report xml:test-coverage.xml --cov=app --junitxml=test-results/test-results.xml
+          pytest ./tests --cov-report xml:test-coverage.xml --cov=app --junitxml=test-results/test-results.xml
 
       - name: Git Leaks - Scanning for passwords, tokens, etc.
         uses: gitleaks/gitleaks-action@v2
