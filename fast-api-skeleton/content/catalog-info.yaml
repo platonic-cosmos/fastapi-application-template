@@ -20,7 +20,7 @@ spec:
   owner: user:de-ims
   lifecycle: experimental
   dependsOn:
-    - component:default/infra-${{ values.app_name }}
+    - component:default/${{ values.app_name }}-infra
   providesApis:
     - ${{ values.app_name }}
 
