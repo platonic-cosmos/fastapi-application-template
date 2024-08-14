@@ -18,6 +18,8 @@ spec:
   type: service
   owner: user:de-ims
   lifecycle: experimental
+  dependsOn:
+    - component:default/infra-${{ values.app_name }}
   providesApis:
     - ${{ values.app_name }}
 
