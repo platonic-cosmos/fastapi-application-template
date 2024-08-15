@@ -15,7 +15,7 @@ client.setup_logging()
 @app.get("/hc/")
 def healthcheck():
     logging.info("Called /hc endpoint.")
-    return {"message": "Health - Ok"}
+    return {"message": "Health - OK"}
 
 @app.get("/tasks/")
 def get_db_data():
@@ -33,7 +33,7 @@ def get_db_data():
 @app.get("/")
 async def root():
     logging.info("Called / endpoint.")
-    return {"message": "Hello World"}
+    return {"message": "Hello from ${{ values.app_name }} API"}
 
 @app.get("/logwarning")
 def log_warning():
