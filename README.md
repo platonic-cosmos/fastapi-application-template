@@ -12,8 +12,8 @@ This boilerplate is used to provision a new Python FastAPI service running in Go
 * Application documentation
 * Docker file
 * GitHub Actions CI pipeline
-
-## Features under Development
 * Unit testing
 * Monitoring / Observability instrumentation
+
+## Features under Development
 * Security guardrails / policies
