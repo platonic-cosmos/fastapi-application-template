@@ -37,13 +37,13 @@ jobs:
           pip install -r requirements.txt
           pip install pytest pytest-md pytest-emoji pytest-cov
 
-      - name: configure gcp credentials
+      - name: Configure GCP credentials
         uses: google-github-actions/auth@v1
         with:
           workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
 
-      - name: Unit Tests
+      - name: Run unit tests
         uses: pavelzw/pytest-action@v2
         with:
           verbose: true
@@ -53,7 +53,7 @@ jobs:
           click-to-expand: false
           report-title: 'Unit Tests Report'
       
-      - name: Unit Tests Coverage
+      - name: Generate code coverage
         run: |
           pytest . --cov-report xml:test-coverage.xml --cov=. --junitxml=test-results/test-results.xml
       
@@ -69,13 +69,13 @@ jobs:
           name: unit-tests-results
           path: test-results.xml
 
-      - name: Git Leaks - Scanning for passwords, tokens, etc.
+      - name: Gitleaks - scan for passwords, tokens, etc.
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
 
-      - name: SonarQube Scan
+      - name: Code quality scan using SonarQube
         uses: sonarsource/sonarqube-scan-action@v2.3.0
         continue-on-error: true
         env:
@@ -87,14 +87,14 @@ jobs:
             -Dsonar.projectKey=${{ env.APP_NAME }}
             -Dsonar.python.coverage.reportPaths=test-coverage.xml
 
-      - name: auth docker
+      - name: Auth Docker
         run: gcloud --quiet auth configure-docker us-east4-docker.pkg.dev
       
-      - name: Build and push
+      - name: Build Docker image
         run: |
           docker build --tag "us-east4-docker.pkg.dev/png-gcp-learning-poc/python-fastapi/${{ env.APP_NAME }}:${{github.run_number}}" .
       
-      - name: Push to artifact registry
+      - name: Push to Artifact Registry
         run: |
           docker push us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/${{ env.APP_NAME }}:${{github.run_number}}
           gcloud container images add-tag us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/${{ env.APP_NAME }}:${{github.run_number}} us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/${{ env.APP_NAME }}:latest
