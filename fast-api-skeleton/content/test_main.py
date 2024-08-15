@@ -7,9 +7,9 @@ client = TestClient(app)
 def test_read_main():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {"message": "Hello World"}
+    assert response.json() == {"message": "Hello from ${{ values.app_name }} API"}
 
 def test_hc_main():
     response = client.get("/hc")
     assert response.status_code == 200
-    assert response.json() == {"message": "Health - Ok"}
+    assert response.json() == {"message": "Health - OK"}
