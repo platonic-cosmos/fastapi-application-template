@@ -31,13 +31,13 @@ jobs:
           pip install -r fast-api-skeleton/content/requirements.txt
           pip install pytest pytest-md pytest-emoji pytest-cov
       
-      - name: configure gcp credentials
+      - name: Configure GCP credentials
         uses: google-github-actions/auth@v1
         with:
           workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
 
-      - name: Unit Tests Summary
+      - name: Unit tests summary
         uses: pavelzw/pytest-action@v2
         continue-on-error: true
         with:
@@ -48,7 +48,7 @@ jobs:
           click-to-expand: false
           report-title: 'Unit Tests Report'
 
-      - name: Unit Tests Coverage
+      - name: Test coverage
         run: |
           pytest . --cov-report xml:test-coverage.xml --cov=. --junitxml=test-results/test-results.xml
       
@@ -58,13 +58,13 @@ jobs:
           name: unit-tests-coverage-report
           path: test-coverage.xml
 
-      - name: Git Leaks - Scanning for passwords, tokens, etc.
+      - name: Gitleaks - scanning for passwords, tokens, etc.
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
 
-      - name: SonarQube Scan
+      - name: SonarQube scan
         uses: sonarsource/sonarqube-scan-action@v2.3.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
