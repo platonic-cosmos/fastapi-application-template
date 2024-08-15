@@ -15,11 +15,11 @@ externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
 paths:
-  /hc/:
+  /:
     get:
-      summary: Healthcheck
-      description: Test healthcheck endpoint
-      operationId: healthcheck_hc__get
+      summary: Root
+      description: Root endpoint
+      operationId: root__get
       responses:
         '200':
           description: Successful Response
@@ -28,8 +28,8 @@ paths:
               schema:
   /tasks/:
     get:
-      summary: Get DB Data
-      description: Test DB data
+      summary: Get Tasks data
+      description: Endpoint that fetches alls Tasks information from the database
       operationId: get_db_data_tasks__get
       responses:
         '200':
@@ -38,11 +38,11 @@ paths:
             text/html:
               schema:
                 type: string
-  /:
+  /hc/:
     get:
-      summary: Root
-      description: Root endpoint
-      operationId: root__get
+      summary: Health Check
+      description: Endpoint for configuring health check probes for this API
+      operationId: healthcheck_hc__get
       responses:
         '200':
           description: Successful Response
