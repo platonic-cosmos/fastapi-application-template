@@ -1,4 +1,4 @@
-# ${{ values.name }}
+# ${{ values.app_name }}
 
 ${{ values.description }}
 
