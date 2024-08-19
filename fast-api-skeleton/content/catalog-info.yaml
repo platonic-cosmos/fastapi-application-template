@@ -16,7 +16,7 @@ metadata:
       title: Logs
       icon: dashboard
   tags:
-    - de-ims
+    - de-ims-app
 spec:
   type: service
   owner: user:de-ims
