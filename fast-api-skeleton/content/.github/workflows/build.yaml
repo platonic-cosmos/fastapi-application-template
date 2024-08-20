@@ -91,13 +91,15 @@ jobs:
         run: gcloud --quiet auth configure-docker us-east4-docker.pkg.dev
       
       - name: Build Docker image
-        run: |
-          docker build --tag "us-east4-docker.pkg.dev/png-gcp-learning-poc/python-fastapi/${{ env.APP_NAME }}:${{github.run_number}}" .
+        shell: bash
+        run: |-
+          app_name=$(echo "${{ env.APP_NAME }}" | awk '{print tolower($0)}')
+          docker build --tag "us-east4-docker.pkg.dev/png-gcp-learning-poc/python-fastapi/$app_name:${{github.run_number}}" .
       
       - name: Push to Artifact Registry
         run: |
-          docker push us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/${{ env.APP_NAME }}:${{github.run_number}}
-          gcloud container images add-tag us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/${{ env.APP_NAME }}:${{github.run_number}} us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/${{ env.APP_NAME }}:latest
+          docker push us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/$app_name:${{github.run_number}}
+          gcloud container images add-tag us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/$app_name:${{github.run_number}} us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/$app_name:latest
 
       - name: Call CD workflow
         run: |
