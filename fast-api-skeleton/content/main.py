@@ -9,6 +9,7 @@ import logging
 app = FastAPI()
 instance_id="appdb"
 database_id="${{ values.spanner_db_name }}"
+database_id=database_id.lower()
 client = google.cloud.logging.Client()
 client.setup_logging()
 
