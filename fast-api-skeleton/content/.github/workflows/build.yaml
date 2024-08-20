@@ -93,8 +93,8 @@ jobs:
       - name: Build Docker image
         shell: bash
         run: |-
-          echo app_name_lowercase=$(echo "${{ env.APP_NAME }}" | awk '{print tolower($0)}') >> $GITHUB_ENV
-          docker build --tag "us-east4-docker.pkg.dev/png-gcp-learning-poc/python-fastapi/${app_name_lowercase}:${{github.run_number}}" .
+          app_name_lowercase=$(echo "${{ env.APP_NAME }}" | awk '{print tolower($0)}')
+          docker build --tag "us-east4-docker.pkg.dev/png-gcp-learning-poc/python-fastapi/$app_name_lowercase:${{github.run_number}}" .
       
       - name: Push to Artifact Registry
         run: |
