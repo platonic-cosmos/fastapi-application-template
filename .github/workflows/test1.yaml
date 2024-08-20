@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-fastapi-app:
-    name: Build FastAPI App
+    name: Test string
     runs-on: ubuntu-latest
 
     permissions:
