@@ -98,8 +98,8 @@ jobs:
       
       - name: Push to Artifact Registry
         run: |
-          docker push us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/$app_name:${{github.run_number}}
-          gcloud container images add-tag us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/$app_name:${{github.run_number}} us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/$app_name:latest
+          docker push us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/$app_name_lowercase:${{github.run_number}}
+          gcloud container images add-tag us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/$app_name_lowercase:${{github.run_number}} us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/$app_name_lowercase:latest
 
       - name: Call CD workflow
         run: |
