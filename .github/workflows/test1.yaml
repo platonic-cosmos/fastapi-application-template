@@ -1,0 +1,26 @@
+name: Test string
+
+on:
+  push:
+    branches: main
+
+jobs:
+  build-fastapi-app:
+    name: Build FastAPI App
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+      actions: read
+      checks: write
+      issues: write
+      pull-requests: write
+
+    steps:
+        - name: test string
+          shell: bash
+          run: |-
+            test="FastAPIApplication"  
+            testlower=$(echo $test | awk '{print tolower($0)}')
+            echo $testlower
