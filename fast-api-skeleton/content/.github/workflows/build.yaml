@@ -97,7 +97,9 @@ jobs:
           docker build --tag "us-east4-docker.pkg.dev/png-gcp-learning-poc/python-fastapi/$app_name_lowercase:${{github.run_number}}" .
       
       - name: Push to Artifact Registry
-        run: |
+        shell: bash
+        run: |-
+          app_name_lowercase=$(echo "${{ env.APP_NAME }}" | awk '{print tolower($0)}')
           docker push us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/$app_name_lowercase:${{github.run_number}}
           gcloud container images add-tag us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/$app_name_lowercase:${{github.run_number}} us-east4-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/python-fastapi/$app_name_lowercase:latest
 
