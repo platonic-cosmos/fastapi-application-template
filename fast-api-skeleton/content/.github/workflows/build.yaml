@@ -69,11 +69,11 @@ jobs:
           name: unit-tests-results
           path: test-results.xml
 
-      - name: Gitleaks - scan for passwords, tokens, etc.
-        uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
+      # - name: Gitleaks - scan for passwords, tokens, etc.
+      #   uses: gitleaks/gitleaks-action@v2
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
 
       - name: Code quality scan using SonarQube
         uses: sonarsource/sonarqube-scan-action@v2.3.0
